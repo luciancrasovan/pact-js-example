@@ -55,6 +55,7 @@ describe('Movies Service', () => {
             id: integer(testId),
             name: string(EXPECTED_BODY.name),
             year: integer(EXPECTED_BODY.year),
+            director: string(EXPECTED_BODY.director),
           }
         });
 
@@ -70,9 +71,11 @@ describe('Movies Service', () => {
 
       const name = 'Harry Potter and the Philosopher Stone';
       const year = 2001;
+      const director = 'Chris Columbus';
 
       EXPECTED_BODY.name = name;
       EXPECTED_BODY.year = year;
+      EXPECTED_BODY.director = director;
 
       provider
         .uponReceiving('a request to add a new movie')
@@ -81,6 +84,7 @@ describe('Movies Service', () => {
           body: {
             name,
             year,
+            director,
           },
           path: '/movies',
         })
@@ -90,6 +94,7 @@ describe('Movies Service', () => {
             id: integer(EXPECTED_BODY.id),
             name,
             year,
+            director,
           }
         });
 
@@ -103,9 +108,11 @@ describe('Movies Service', () => {
 
       const name = 'Harry Potter and the Philosopher Stone';
       const year = 2001;
+      const director = 'Chris Columbus';
 
       EXPECTED_BODY.name = name;
       EXPECTED_BODY.year = year;
+      EXPECTED_BODY.director = director;
 
       provider
         .given('an existing movie exists', { EXPECTED_BODY })
@@ -115,6 +122,7 @@ describe('Movies Service', () => {
           body: {
             name,
             year,
+            director,
           },
           path: '/movies',
         })
