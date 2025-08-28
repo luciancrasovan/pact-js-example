@@ -3,3 +3,4 @@ logs
 cypress/pacts
 cypress/downloads
 output
+.idea

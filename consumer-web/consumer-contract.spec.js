@@ -14,7 +14,7 @@ const provider = new PactV3({
   provider: 'MoviesAPI',
 });
 
-const EXPECTED_BODY = { id: 1, name: "My movie", year: 1999 };
+const EXPECTED_BODY = { id: 1, name: "Jaws", year: 1999, director: "Steven Spielberg" };
 
 describe('Movies Service', () => {
   describe('When a GET request is made to /movies', () => {
