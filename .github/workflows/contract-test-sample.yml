@@ -29,7 +29,7 @@ jobs:
       - name: Run graphql provider contract tests
         run: npm run test:graphql:provider
       - name: Can I deploy provider?
-        run: npm run can:i:deploy:provider
+        run: npm run can:i:deploy:provider:test
       - name: Can I deploy GraphQL provider?
         run: npm run can:i:deploy:graphql:provider
       - name: Record provider deployment

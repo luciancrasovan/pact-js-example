@@ -11,7 +11,7 @@
     "start:provider": "cross-env PORT=3001 node provider/provider-service.js",
     "test:provider": "jest provider/provider-contract.spec.js --testTimeout=20000 --forceExit",
     "integration:test:provider": "jest provider/integration-tests/",
-    "can:i:deploy:provider": "pact-broker can-i-deploy --pacticipant MoviesAPI --version=$GITHUB_SHA --to-environment production",
+    "can:i:deploy:provider:test": "pact-broker can-i-deploy --pacticipant MoviesAPI --version=$GITHUB_SHA --to-environment test",
     "record:provider:deployment": "pact-broker record-deployment --pacticipant MoviesAPI --version $GITHUB_SHA --environment production",
     "start:graphql:server": "npm run start:provider & node graphql/provider/graphql-server.js",
     "test:graphql:consumer": "jest graphql/consumer/graphql-client-contract.spec.js",
