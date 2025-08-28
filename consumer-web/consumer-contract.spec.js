@@ -134,7 +134,7 @@ describe('Movies Service', () => {
         });
 
       await provider.executeTest(async mockProvider => {
-        const movies = await addNewMovie(mockProvider.url, name, year);
+        const movies = await addNewMovie(mockProvider.url, name, year, director);
         expect(movies.error).toEqual(`Movie ${name} already exists`);
       });
     });
