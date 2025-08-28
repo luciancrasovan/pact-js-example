@@ -30,6 +30,8 @@ jobs:
         run: npm run test:provider
       - name: Run graphql provider contract tests
         run: npm run test:graphql:provider
+      - name: Run kafka event provider contract tests
+        run: npm run test:event:producer
       - name: Can I deploy provider in testing environment?
         run: npm run can:i:deploy:provider:test
       - name: Can I deploy GraphQL provider?
