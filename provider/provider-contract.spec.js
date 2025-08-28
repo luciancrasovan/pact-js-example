@@ -32,9 +32,7 @@ if (process.env.PACT_PAYLOAD_URL) {
   console.log(`Using Pact Broker Base URL: ${process.env.PACT_BROKER_BASE_URL}`)
   options.pactBrokerUrl = process.env.PACT_BROKER_BASE_URL,
     options.consumerVersionSelectors = [
-      { mainBranch: true },
-      { matchingBranch: true },
-      { deployedOrReleased: true }
+      { matchingBranch: true }
     ]
 };
 
