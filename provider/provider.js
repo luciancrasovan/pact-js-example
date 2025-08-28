@@ -51,6 +51,7 @@ const importData = () => {
  *                  id: 1
  *                  name: James Bond
  *                  year: 2021
+ *                  director: Sorrentino
  */
 server.get('/movies', (req, res) => {
   res.send(movies.getMovies());
@@ -83,10 +84,13 @@ server.get('/movies', (req, res) => {
  *                  type: string
  *                year:
  *                  type: integer
+ *                director:
+ *                  type: string
  *              example:
  *                id: 1
  *                name: James Bond
  *                year: 2021
+ *                director: Sorrentino
  */
 server.get('/movie/:id', (req, res) => {
   const movie = movies.getMovieById(req.params.id);
@@ -101,6 +105,7 @@ server.post('/movies', (req, res) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     year: Joi.number().integer().min(1900).max(2023).required(),
+    director: Joi.string().required(),
   });
 
   const result = schema.validate(req.body);
@@ -110,6 +115,7 @@ server.post('/movies', (req, res) => {
     id,
     name: req.body.name,
     year: req.body.year,
+    director: req.body.director,
   };
 
   if (result.error) res.status(404).send(result.error.details[0]);
