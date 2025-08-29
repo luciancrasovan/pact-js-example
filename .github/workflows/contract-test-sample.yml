@@ -18,6 +18,8 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm i
+      - name: Run Kafka movie-genre consumer contract tests
+        run: npm rrun  test:movie:genre:event:consumer
       - name: Run kafka consumer contract tests
         run: npm run test:event:consumer
       - name: Run web consumer contract tests
