@@ -7,7 +7,7 @@ const { createMovie } = require('./movie.event');
 describe('Event producer tests', () => {
   const provider = new MessageProviderPact({
     messageProviders: {
-      'a movie add event': providerWithMetadata(() => createMovie("The World's End", "2013, "SciFi"), {
+      'a movie add event': providerWithMetadata(() => createMovie("The World's End", "2013", "SciFi"), {
         topic: 'movies',
         contentType: 'application/json'
       }),
