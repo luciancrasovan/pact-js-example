@@ -1,4 +1,4 @@
-# PactJS Contract Testing Example - Froked from github.com/mcruz - Contract testing in action
+# PactJS Contract Testing Example - Forked from github.com/mdcruz - Contract testing in action
 
 An example test framework using PactJS to validate contract testing between consumer and provider. The application that we are testing is a simple movies API which returns a list of movies. Please feel free to fork the repo to help with your contract testing learning.
 
