@@ -10,7 +10,7 @@ const path = require("path");
 describe("Kafka handler", () => {
   const messagePact = new MessageConsumerPact({
     consumer: "GenreEventConsumer",
-    provider: "EventProducer",
+    provider: "GenreEventProducer",
     dir: path.resolve(process.cwd(), "pacts"),
     logLevel: "info",
   });

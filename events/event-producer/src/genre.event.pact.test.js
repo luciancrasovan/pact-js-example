@@ -13,7 +13,7 @@ describe('Genre event producer tests', () => {
       }),
     },
     logLevel: 'info',
-    provider: 'EventProducer',
+    provider: 'GenreEventProducer',
     providerVersion: process.env.GITHUB_SHA,
     providerVersionBranch: process.env.GITHUB_BRANCH,
     consumerVersionSelectors: [
