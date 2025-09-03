@@ -20,6 +20,8 @@ jobs:
         run: npm i
       - name: Run Kafka movie-genre consumer contract tests
         run: npm run  test:movie:genre:event:consumer
+      - name: Run Kafka genre consumer contract tests
+        run: npm run  test:genre:event:consumer
       - name: Run kafka consumer contract tests
         run: npm run test:event:consumer
       - name: Run web consumer contract tests
