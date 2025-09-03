@@ -11,7 +11,7 @@ const consumer = kafka.consumer({ groupId: clientId });
 
 const consumeGenreStream = async (handler) => {
   await consumer.connect();
-  await consumer.subscribe({ topic: 'movies', fromBeginning: false });
+  await consumer.subscribe({ topic: 'genres', fromBeginning: false });
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
       try {
