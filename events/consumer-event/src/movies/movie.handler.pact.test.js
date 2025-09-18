@@ -1,4 +1,3 @@
-
 const {
   MatchersV3,
   MessageConsumerPact,
@@ -8,16 +7,11 @@ const movieEventHandler = require('./movie.handler');
 const { like } = MatchersV3;
 const path = require("path");
 const avro = require('avsc');
+const fs = require('fs');
 
-// Define AVRO schema for movie events
-const movieSchema = avro.Type.forSchema({
-  type: 'record',
-  name: 'MovieEvent',
-  fields: [
-    { name: 'name', type: 'string' },
-    { name: 'year', type: 'string' }
-  ]
-});
+// Load AVRO schema from file
+const schemaFile = fs.readFileSync(path.resolve(__dirname, '../../../schemas/movie.avsc'), 'utf8');
+const movieSchema = avro.Type.forSchema(JSON.parse(schemaFile));
 
 describe("Kafka handler", () => {
   const messagePact = new MessageConsumerPact({
@@ -29,15 +23,15 @@ describe("Kafka handler", () => {
 
   describe("receive a add movie event", () => {
     it("accepts a movie event with valid AVRO schema", () => {
-      // First validate the actual data structure
       const actualData = {
         name: "The World's End",
         year: "2013"
       };
 
-      // Validate actual data against AVRO schema
+      // Validate and encode the data using AVRO
       const isValid = movieSchema.isValid(actualData);
       expect(isValid).toBe(true);
+      const encodedData = movieSchema.toBuffer(actualData);
 
       // Create Pact matcher version for the contract
       const movieEvent = {
@@ -49,7 +43,7 @@ describe("Kafka handler", () => {
           .expectsToReceive("a movie add event")
           .withContent(movieEvent)
           .withMetadata({
-            "contentType": "application/json",
+            "contentType": "application/avro",
             "topic": "movies",
             "schemaType": "avro"
           })

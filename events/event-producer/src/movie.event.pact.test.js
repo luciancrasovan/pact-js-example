@@ -3,13 +3,27 @@ const {
   providerWithMetadata,
 } = require('@pact-foundation/pact');
 const { createMovie } = require('./movie.event');
+const path = require('path');
+const avro = require('avsc');
+const fs = require('fs');
+
+// Load AVRO schema from file
+const schemaFile = fs.readFileSync(path.resolve(__dirname, '../../../schemas/movie.avsc'), 'utf8');
+const movieSchema = avro.Type.forSchema(JSON.parse(schemaFile));
 
 describe('Event producer tests', () => {
   const provider = new MessageProviderPact({
     messageProviders: {
-      'a movie add event': providerWithMetadata(() => createMovie("The World's End", "2013"), {
+      'a movie add event': providerWithMetadata(() => {
+        const message = createMovie("The World's End", "2013");
+        // Validate the message against AVRO schema
+        const isValid = movieSchema.isValid(message);
+        expect(isValid).toBe(true);
+        // Return the message (in practice this would be encoded, but for Pact testing we keep it as object)
+        return message;
+      }, {
         topic: 'movies',
-        contentType: 'application/json'
+        contentType: 'application/avro'
       }),
     },
     logLevel: 'info',

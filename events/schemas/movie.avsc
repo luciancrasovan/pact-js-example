@@ -1,0 +1,8 @@
+{
+  "type": "record",
+  "name": "MovieEvent",
+  "fields": [
+    { "name": "name", "type": "string" },
+    { "name": "year", "type": "string" }
+  ]
+}
