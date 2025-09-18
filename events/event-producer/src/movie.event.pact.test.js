@@ -8,7 +8,7 @@ const avro = require('avsc');
 const fs = require('fs');
 
 // Load AVRO schema from file
-const schemaFile = fs.readFileSync(path.resolve(__dirname, '../../../schemas/movie.avsc'), 'utf8');
+const schemaFile = fs.readFileSync(path.resolve(__dirname, '../../schemas/movie.avsc'), 'utf8');
 const movieSchema = avro.Type.forSchema(JSON.parse(schemaFile));
 
 describe('Event producer tests', () => {
