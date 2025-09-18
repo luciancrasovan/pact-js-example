@@ -31,7 +31,6 @@ describe("Kafka handler", () => {
       // Validate and encode the data using AVRO
       const isValid = movieSchema.isValid(actualData);
       expect(isValid).toBe(true);
-      const encodedData = movieSchema.toBuffer(actualData);
 
       // Create Pact matcher version for the contract
       const movieEvent = {
