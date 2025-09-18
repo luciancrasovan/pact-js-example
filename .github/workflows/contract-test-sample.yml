@@ -18,6 +18,8 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm i
+      - name: Run kafka consumer contract tests
+        run: npm run test:event:consumer
       - name: Run web consumer contract tests
         run: npm run test:web:consumer
       - name: Run graphql consumer contract tests
