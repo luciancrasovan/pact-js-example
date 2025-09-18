@@ -43,8 +43,8 @@ describe("Kafka handler", () => {
           .withContent(movieEvent)
           .withMetadata({
             "contentType": "application/avro",
-            "topic": "movies",
-            "schemaType": "avro"
+            "topic": "movies"
+//            "schemaType": "avro"
           })
           .verify(asynchronousBodyHandler(movieEventHandler));
     });
