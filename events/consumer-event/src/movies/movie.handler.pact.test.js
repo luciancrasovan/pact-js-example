@@ -1,3 +1,4 @@
+
 const {
   MatchersV3,
   MessageConsumerPact,
@@ -28,14 +29,21 @@ describe("Kafka handler", () => {
 
   describe("receive a add movie event", () => {
     it("accepts a movie event with valid AVRO schema", () => {
-      const movieEvent = {
-        name: like("The World's End"),
-        year: like("2013")
+      // First validate the actual data structure
+      const actualData = {
+        name: "The World's End",
+        year: "2013"
       };
 
-      // Validate against AVRO schema
-      const isValid = movieSchema.isValid(movieEvent);
+      // Validate actual data against AVRO schema
+      const isValid = movieSchema.isValid(actualData);
       expect(isValid).toBe(true);
+
+      // Create Pact matcher version for the contract
+      const movieEvent = {
+        name: like(actualData.name),
+        year: like(actualData.year)
+      };
 
       return messagePact
           .expectsToReceive("a movie add event")
